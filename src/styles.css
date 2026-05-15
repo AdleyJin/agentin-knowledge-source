@@ -1,0 +1,370 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* shadcn/ui · zinc base color · new-york style
+ *
+ * 这些 CSS 变量定义的是「设计 token」，后续做差异化设计大多数视觉调整
+ * 只要改这里的 token 就够了 —— 不必碰组件源码。
+ */
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.21 0.006 285.885);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.705 0.015 286.067);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.141 0.005 285.823);
+  --sidebar-primary: oklch(0.21 0.006 285.885);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-ring: oklch(0.705 0.015 286.067);
+
+  /* Agentin design tokens (matched to Figma) */
+  --ag-bg: #f2f2f2;
+  --ag-surface: #ffffff;
+  --ag-border: #e6e6e6;
+  --ag-border-soft: rgba(230, 230, 230, 0.6);
+  --ag-text: #1a1a1a;
+  --ag-text-strong: #1c1f25;
+  --ag-text-muted: #868686;
+  --ag-text-faint: #bbbbbb;
+  --ag-hover: rgba(0, 0, 0, 0.04);
+  --ag-bubble-user: rgba(26, 26, 26, 0.05);
+  --ag-active: #ebebeb;
+}
+
+.dark {
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.92 0.004 286.32);
+  --primary-foreground: oklch(0.21 0.006 285.885);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.552 0.016 285.938);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.552 0.016 285.938);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --animate-blink-cursor: blink-cursor 1.2s step-end infinite;
+  --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
+  --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
+  @keyframes blink-cursor {
+  0%, 49% {
+    opacity: 1;
+    }
+  50%, 100% {
+    opacity: 0;
+    }
+  }
+  @keyframes shimmer-slide {
+  to {
+    transform: translate(calc(100cqw - 100%), 0);
+    }
+  }
+  @keyframes spin-around {
+  0% {
+    transform: translateZ(0) rotate(0);
+    }
+  15%, 35% {
+    transform: translateZ(0) rotate(90deg);
+    }
+  65%, 85% {
+    transform: translateZ(0) rotate(270deg);
+    }
+  100% {
+    transform: translateZ(0) rotate(360deg);
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Skeleton shimmer (used by Skeleton component) */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Searching shimmer — a darker "light" sweeps across the whole loading
+ * label from left to right while AI 检索知识库. We use a wide gradient
+ * clipped to the text so the highlight stays in the glyphs themselves
+ * (rather than as a separate overlay), and size it >100% so the dark
+ * peak lives offscreen at the start/end of every cycle, making the
+ * loop seamless.
+ */
+@keyframes ag-shimmer-sweep {
+  0%   { background-position: 100% center; }
+  100% { background-position: 0%   center; }
+}
+.ag-shimmer-text {
+  /* Per Figma spec — base #868686 (medium grey), highlight #E6E6E6
+   * (near-white). The lighter band sweeps across the darker text so
+   * the effect reads as "light scanning across" rather than "ink
+   * passing over". */
+  background-image: linear-gradient(
+    90deg,
+    #868686 0%,
+    #868686 32%,
+    #e6e6e6 50%,
+    #868686 68%,
+    #868686 100%
+  );
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: ag-shimmer-sweep 1.8s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ag-shimmer-text {
+    animation: none;
+    color: #868686;
+    -webkit-text-fill-color: #868686;
+    background: none;
+  }
+}
+
+/* `.ag-rise` — no-op marker class.
+ *
+ * Originally a keyframe-based "rise + fade" entrance for streamed
+ * message blocks; per design feedback the entrance is now instant.
+ * The class is intentionally left here (without rules) and still
+ * lives on 8+ message-block elements so a future per-block entrance
+ * can be re-introduced as a single edit (either by restoring CSS here
+ * or by binding the same selector to a Motion variant).
+ *
+ * Do not delete the className from components even though the CSS is
+ * empty — keeping it preserves the hook point.
+ */
+.ag-rise { /* intentionally empty — see comment above */ }
+
+/* ─────────────────────────────────────────────────────────────────────
+ * iPhone 17 Pro Max device frame
+ *
+ * Houses the mobile prototype inside a realistic-looking phone shell so
+ * the demo conveys "this is the mobile experience" at a glance. The
+ * Figma mobile artboard is 375×812 (iPhone X-class), so the inner
+ * screen sticks to those dimensions. The bezel + corner radii + Dynamic
+ * Island are tuned to feel like a current-gen Pro Max (titanium frame,
+ * pillowed corners, pill-shaped island) rather than the older notch.
+ * ──────────────────────────────────────────────────────────────────── */
+
+/* Outer titanium body */
+.ag-iphone {
+  --ag-iphone-screen-w: 375px;
+  --ag-iphone-screen-h: 812px;
+  --ag-iphone-bezel: 14px;
+
+  position: relative;
+  width: calc(var(--ag-iphone-screen-w) + var(--ag-iphone-bezel) * 2);
+  height: calc(var(--ag-iphone-screen-h) + var(--ag-iphone-bezel) * 2);
+  padding: var(--ag-iphone-bezel);
+  border-radius: 64px;
+  /* Subtle gradient mimics natural-titanium finish on Pro Max */
+  background:
+    linear-gradient(135deg, #2a2a2c 0%, #3a3a3c 38%, #1d1d1f 65%, #2c2c2e 100%);
+  box-shadow:
+    /* outer glow */
+    0 40px 80px -20px rgba(0, 0, 0, 0.45),
+    0 12px 32px rgba(0, 0, 0, 0.18),
+    /* polished rim highlight */
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  isolation: isolate;
+}
+
+/* Side button hints — tactile detail for the bezel. Sit slightly
+ * recessed using a thin outer offset so they read as physical buttons,
+ * not stickers. */
+.ag-iphone::before,
+.ag-iphone::after {
+  content: '';
+  position: absolute;
+  background: linear-gradient(180deg, #1a1a1c 0%, #2a2a2c 50%, #1a1a1c 100%);
+  border-radius: 2px 0 0 2px;
+}
+/* Volume / silencer cluster on the left */
+.ag-iphone::before {
+  left: -2px;
+  top: 110px;
+  width: 3px;
+  height: 32px;
+  box-shadow:
+    0 60px 0 0 #1a1a1c,
+    0 60px 0 0 currentColor,
+    0 60px 0 0 transparent,
+    0 60px 0 -1px rgba(255, 255, 255, 0.04),
+    0 110px 0 0 #1a1a1c;
+}
+/* Power button on the right */
+.ag-iphone::after {
+  right: -2px;
+  top: 150px;
+  width: 3px;
+  height: 80px;
+  border-radius: 0 2px 2px 0;
+  background: linear-gradient(180deg, #1a1a1c 0%, #2a2a2c 50%, #1a1a1c 100%);
+}
+
+/* Inner screen — pure black surface with the slightly smaller corner
+ * radius the inside of a Pro Max screen has compared to the outer body. */
+.ag-iphone-screen {
+  position: relative;
+  width: var(--ag-iphone-screen-w);
+  height: var(--ag-iphone-screen-h);
+  border-radius: 50px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.6);
+}
+
+/* Dynamic Island — pill-shaped sensor cluster centered just below the
+ * top edge. Sized close to actual Pro Max proportions; sits above page
+ * chrome in a separate stacking context. */
+.ag-iphone-island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 30px;
+  border-radius: 999px;
+  background: #000;
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* Home indicator — single rounded pill at the bottom edge.
+ * Always-on-top so it reads as a system gesture hint over content. */
+.ag-iphone-home {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 134px;
+  height: 5px;
+  border-radius: 100px;
+  background: #1a1a1a;
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* Status bar — clock + signal/wifi/battery glyphs.
+ * Simulated rather than rendered as real UI: a small SVG strip keeps
+ * the visual language consistent with the Figma reference. */
+.ag-iphone-status {
+  position: relative;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+  z-index: 5;
+}
+.ag-iphone-status-time {
+  /* Make room for the Dynamic Island — anchor the clock to its left */
+  margin-right: 60px;
+}
+.ag-iphone-status-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 60px;
+}

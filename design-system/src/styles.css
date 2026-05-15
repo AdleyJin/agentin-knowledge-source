@@ -1,0 +1,52 @@
+/* DS site styles — re-import the host app's full token + Tailwind setup
+ * so previews match production exactly. Anything DS-specific is layered
+ * after the host import so it can override (sparingly).
+ */
+@import "../../src/styles.css";
+
+/* Subtle scroll-margin so anchored sections clear the sticky header. */
+:root {
+  --ds-nav-w: 240px;
+  --ds-header-h: 56px;
+}
+
+[id] {
+  scroll-margin-top: calc(var(--ds-header-h) + 16px);
+}
+
+/* DS code preview surface — slightly cooler than a pure card so it
+ * reads as "inspectable" rather than "another card". */
+.ds-codeblock {
+  background: #0f1115;
+  color: #e7e9ee;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.55;
+  border-radius: 10px;
+  padding: 14px 16px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Checker pattern for the "transparent" swatch & alpha colors so the
+ * eye can read translucency at a glance. */
+.ds-checker {
+  background-image:
+    linear-gradient(45deg, #e9e9e9 25%, transparent 25%),
+    linear-gradient(-45deg, #e9e9e9 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e9e9e9 75%),
+    linear-gradient(-45deg, transparent 75%, #e9e9e9 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+}
+
+/* Tiny "copied!" toast appended in-place when a token is clicked. */
+@keyframes ds-flash {
+  0% { opacity: 0; transform: translateY(2px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.ds-flash {
+  animation: ds-flash 1.1s ease-out forwards;
+}
